@@ -1,3 +1,9 @@
+/*
+	Task: Stack calculator
+	Author: Darina Lebedeva, group 171
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "stack_func.h"
@@ -8,7 +14,6 @@ int calc_start(stack_node **stack_head, number **value, number **num1, number **
 	List *tempRev = NULL;
 	char operation = '\0', first_digit = '\0';
 	int i = 0, ok = 0, digit = 0, x;
-
 	while((x = getchar()) != EOF)
 	{
 	    first_digit = (char) x;
@@ -34,6 +39,7 @@ int calc_start(stack_node **stack_head, number **value, number **num1, number **
 			if ((*stack_head) -> value -> sign == -1)
 				printf("-");
 			List_print(&tempRev);
+			List_delList(&tempRev);
 			printf("\n");
 		}
 
@@ -43,7 +49,7 @@ int calc_start(stack_node **stack_head, number **value, number **num1, number **
 			operation = first_digit;
 			if ((int)*trash != 10 && *trash != ' ')
             {
-                stack_print (stack_head, value);
+               // stack_print (stack_head, value);
 				return 1;
             }
 		}
@@ -58,7 +64,7 @@ int calc_start(stack_node **stack_head, number **value, number **num1, number **
 					operation = first_digit;
 				else
                 {
-                    stack_print (stack_head, value);
+                   // stack_print (stack_head, value);
 					return 1;
                 }
 			}
