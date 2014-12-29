@@ -22,6 +22,7 @@ int Num_read(number **num, char first_digit);
 
 int Num_sum(number **num1, number **num2, number **num_sum);
 void Num_dif(number **num1, number **num2, number **result);
-
+void Num_mult(number **num1, number **num2, number **result);
+void Num_divide(number **num1, number **num2, number **result);
 
 #endif //NUM_FUNC_H_INCLUDED
