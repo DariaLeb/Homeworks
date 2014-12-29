@@ -2,16 +2,16 @@
 #include <stdlib.h>
 #include "stack_func.h"
 
-//processes the commands and calls the necessary functions
-int calc_starts(stack_node **stack_head, number **value, number **num1, number **num2, number **result, char *trash)
+int calc_start(stack_node **stack_head, number **value, number **num1, number **num2, number **result, char *trash)
 {
 	List *temp = NULL;
 	List *tempRev = NULL;
 	char operation = '\0', first_digit = '\0';
-	int i = 0, ok = 0, digit = 0;
+	int i = 0, ok = 0, digit = 0, x;
 
-	while((first_digit = getchar()) != EOF)
+	while((x = getchar()) != EOF)
 	{
+	    first_digit = (char) x;
 		//reading number
 		Num_clear(value);
 		operation = '\0';
@@ -42,7 +42,10 @@ int calc_starts(stack_node **stack_head, number **value, number **num1, number *
 			scanf("%c", trash);
 			operation = first_digit;
 			if ((int)*trash != 10 && *trash != ' ')
+            {
+                stack_print (stack_head, value);
 				return 1;
+            }
 		}
 
 		else
@@ -54,7 +57,10 @@ int calc_starts(stack_node **stack_head, number **value, number **num1, number *
 				if (first_digit == '-')
 					operation = first_digit;
 				else
+                {
+                    stack_print (stack_head, value);
 					return 1;
+                }
 			}
 
 			else if ((*value) -> sign == 0xDEAD)
@@ -123,21 +129,7 @@ int calc_starts(stack_node **stack_head, number **value, number **num1, number *
 			stack_push(stack_head, result);
 		}
 	}
-
-	printf("[");
-	while (stack_size(stack_head) != 0)
-	{
-		Num_del(value);
-		stack_pop(stack_head, value);
-		if ((*value) -> sign == -1)
-			printf("-");
-		Num_reverse(value);
-		List_print(&(*value)->head);
-		if (stack_size(stack_head) != 0)
-			printf("; ");
-	}
-	printf("]");
-
+	stack_print (stack_head, value);
 	*trash = '\12';
 	return 0;
 }
@@ -152,7 +144,7 @@ int main(void)
 	char trash = '\12';
 	int returnCode = 0;
 
-	returnCode = calc_starts(&stack_head, &value, &num1, &num2, &result, &trash);
+	returnCode = calc_start(&stack_head, &value, &num1, &num2, &result, &trash);
 
 	//deleting all numbers
 	Num_del(&value);

@@ -24,4 +24,6 @@ void stack_pop(stack_node **head, number **num);
 //adds new element to stack
 void stack_push(stack_node **head, number **data);
 
+void stack_print (stack_node **stack_head, number **value);
+
 #endif // STACK_FUNC_H_INCLUDED

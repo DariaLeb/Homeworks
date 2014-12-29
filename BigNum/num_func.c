@@ -139,12 +139,12 @@ int Num_sum(number **num1, number **num2, number **num_sum)
 			p2 = p2 -> next;
         }
 		i += a;
-		if (List_add(&(*num_sum) -> head, min(i, 9)) == 1)
+		if (List_add(&(*num_sum) -> head, i % 10) == 1)
 		{
 			Num_del(num_sum);
 			return 1;
 		};
-		a = max(i - 9, 0);
+		a = max(i / 10, 0);
 	}
 	if (a != 0)
 		if (List_add(&(*num_sum) -> head, a) == 1)
@@ -179,7 +179,7 @@ void Num_dif(number **num1, number **num2, number **result)
 		if (p2 != NULL)
 		{
 			a -= p2 -> n;
-			p = p -> next;
+			p2 = p2 -> next;
 		}
 
 		if (a < 0)

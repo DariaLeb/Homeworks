@@ -44,7 +44,6 @@ void List_print(List **L)
 		printf("%i", p -> n);
 		p = p -> next;
 	}
-	printf("\n");
 	return;
 }
 
@@ -57,6 +56,7 @@ void List_delList(List **L)
 		free(p);
 		p = p2;
 	}
+	*L = NULL;
 	return;
 }
 

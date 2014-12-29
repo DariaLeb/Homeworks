@@ -79,3 +79,20 @@ void stack_push(stack_node **head, number **data)
 	*head = temp;
 	return;
 }
+
+void stack_print (stack_node **stack_head, number **value)
+{
+    printf("[");
+	while (stack_size(stack_head) != 0)
+	{
+		Num_del(value);
+		stack_pop(stack_head, value);
+		if ((*value) -> sign == -1)
+			printf("-");
+		Num_reverse(value);
+		List_print(&(*value)->head);
+		if (stack_size(stack_head) != 0)
+			printf("; ");
+	}
+	printf("]");
+}
